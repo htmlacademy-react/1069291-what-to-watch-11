@@ -1,5 +1,5 @@
 import React from 'react';
-import bg from '../img/bg-the-grand-budapest-hotel.jpg';
+import bg from '../../assets/img/bg-the-grand-budapest-hotel.jpg';
 import avatar from '../../assets/img/avatar.jpg';
 import poster from '../../assets/img/the-grand-budapest-hotel-poster.jpg';
 

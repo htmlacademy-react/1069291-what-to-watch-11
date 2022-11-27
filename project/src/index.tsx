@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import App from './components/app/app';
 
 const root = ReactDOM.createRoot(
@@ -8,6 +9,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App name="The Grand Budapest Hotel" genre="Drama" releaseYear="2014" />
+    <BrowserRouter>
+      <App name="The Grand Budapest Hotel" genre="Drama" releaseYear="2014" />
+    </BrowserRouter>
   </React.StrictMode>,
 );
