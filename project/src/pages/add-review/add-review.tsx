@@ -1,11 +1,14 @@
 import React from 'react';
+import bg from '../img/bg-the-grand-budapest-hotel.jpg';
+import avatar from '../../assets/img/avatar.jpg';
+import poster from '../../assets/img/the-grand-budapest-hotel-poster.jpg';
 
 function AddReview(): JSX.Element {
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={bg} alt="The Grand Budapest Hotel" />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -33,7 +36,7 @@ function AddReview(): JSX.Element {
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                <img src={avatar} alt="User avatar" width="63" height="63" />
               </div>
             </li>
             <li className="user-block__item">
@@ -43,7 +46,7 @@ function AddReview(): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
         </div>
       </div>
 

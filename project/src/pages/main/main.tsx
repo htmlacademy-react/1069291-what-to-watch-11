@@ -51,26 +51,7 @@ function Main({ name, genre, releaseYear }: MainProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
-            <SmallFilmCard />
+            {[...Array(8).keys()].map((item) => <SmallFilmCard key={item} />)}
           </div>
 
           <div className="catalog__more">

@@ -1,4 +1,7 @@
 import React from 'react';
+import avatar from '../../assets/img/avatar.jpg';
+import bg from '../../assets/img/bg-the-grand-budapest-hotel.jpg';
+import poster from '../../assets/img/the-grand-budapest-hotel-poster.jpg';
 
 type FilmCardProps = {
   name: string;
@@ -11,7 +14,7 @@ function FilmCard({ name, genre, releaseYear }: FilmCardProps): JSX.Element {
   return (
     <section className="film-card">
       <div className="film-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt={name} />
+        <img src={bg} alt={name} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -28,7 +31,7 @@ function FilmCard({ name, genre, releaseYear }: FilmCardProps): JSX.Element {
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <img src={avatar} alt="User avatar" width="63" height="63" />
             </div>
           </li>
           <li className="user-block__item">
@@ -40,7 +43,7 @@ function FilmCard({ name, genre, releaseYear }: FilmCardProps): JSX.Element {
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt={`${name} poster`} width="218" height="327" />
+            <img src={poster} alt={`${name} poster`} width="218" height="327" />
           </div>
 
           <div className="film-card__desc">
