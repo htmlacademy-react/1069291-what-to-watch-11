@@ -1,14 +1,26 @@
 import React from 'react';
-import grindelwald from '../../assets/img/fantastic-beasts-the-crimes-of-grindelwald.jpg';
+import { Link } from 'react-router-dom';
+import { FilmType } from '../../types/films';
 
-function SmallFilmCard(): JSX.Element {
+type SmallFilmCardProps = {
+  film: FilmType;
+  active: boolean;
+  handleMouseEnter: (film: FilmType) => void;
+  handleMouseLeave: () => void;
+}
+
+function SmallFilmCard({ film, active, handleMouseEnter, handleMouseLeave }: SmallFilmCardProps): JSX.Element {
   return (
-    <article className="small-film-card catalog__films-card">
+    <article
+      className="small-film-card catalog__films-card"
+      onMouseEnter={() => handleMouseEnter(film)}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="small-film-card__image">
-        <img src={grindelwald} alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
+        <img src={film.preview} alt={film.name} width="280" height="175" />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
+        <Link to={`/films/${film.id}`} className="small-film-card__link">{film.name}</Link>
       </h3>
     </article>
   );
