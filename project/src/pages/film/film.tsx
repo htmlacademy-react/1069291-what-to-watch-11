@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import Catalog from '../../components/catalog/catalog';
 import FilmCardDesc from '../../components/film-card/partials/film-card-desc/film-card-desc';
@@ -15,8 +15,8 @@ type FilmProps = {
 function Film({ films }: FilmProps): JSX.Element {
   const { id } = useParams();
 
-  const currentFilm = useMemo(() => films.find((film) => film.id === Number(id)), [films, id]);
-  const description = useMemo(() => currentFilm?.description as string[], [currentFilm]);
+  const currentFilm = films.find((film) => film.id === Number(id));
+  const description = currentFilm?.description as string[];
 
   if (!currentFilm) {return <Navigate to={AppRoute.Main} />;}
 

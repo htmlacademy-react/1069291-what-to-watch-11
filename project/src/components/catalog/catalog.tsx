@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { FilmType } from '../../types/films';
 import { GenreType } from '../../types/genres';
 import FilmList from '../film-list/film-list';
@@ -13,15 +13,8 @@ type CatalogProps = {
 
 function Catalog({ className, films, genres, maxCount, title }: CatalogProps): JSX.Element {
 
-  const filteredFilms = useMemo(() => {
-    if (maxCount) {
-      return films.slice(0, maxCount);
-    }
-
-    return films;
-  }, [films, maxCount]);
-
-  const isShowMoreBtn = useMemo(() => filteredFilms.length < films.length, [films.length, filteredFilms.length]);
+  const filteredFilms = maxCount ? films.slice(0, maxCount) : films;
+  const isShowMoreBtn = filteredFilms.length < films.length;
 
   return (
     <section className={`catalog ${className ? className : ''}`}>

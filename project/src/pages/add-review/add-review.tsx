@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { FilmType } from '../../types/films';
 import { Navigate, useParams } from 'react-router-dom';
 import Header from '../../components/header/header';
@@ -12,7 +12,7 @@ type AddReviewProps = {
 function AddReview({ films }: AddReviewProps): JSX.Element {
   const { id } = useParams();
 
-  const currentFilm = useMemo(() => films.find((film) => film.id === Number(id)), [films, id]);
+  const currentFilm = films.find((film) => film.id === Number(id));
 
   if (!currentFilm) {return <Navigate to={AppRoute.Main} />;}
 

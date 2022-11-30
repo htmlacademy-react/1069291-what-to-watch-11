@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../consts';
 import { FilmType } from '../../types/films';
@@ -11,7 +11,7 @@ function Player({ films }: PlayerProps): JSX.Element {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const currentFilm = useMemo(() => films.find((film) => film.id === Number(id)), [films, id]);
+  const currentFilm = films.find((film) => film.id === Number(id));
 
   const handleClickOnExit = () => {
     navigate(AppRoute.Main);

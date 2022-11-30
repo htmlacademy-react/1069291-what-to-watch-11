@@ -1,14 +1,11 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
+import useTextarea from '../../hooks/useTextarea';
 import Star from '../star/star';
 
 function AddReviewForm(): JSX.Element {
   const [rating, setRating] = useState<number>(8);
-  const [review, setReview] = useState<string>('');
 
-  const handleInputReview = (e: FormEvent<HTMLTextAreaElement>) => {
-    const target = e.target as HTMLTextAreaElement;
-    setReview(target.value);
-  };
+  const reviewTextArea = useTextarea('');
 
   return (
     <div className="add-review">
@@ -21,12 +18,11 @@ function AddReviewForm(): JSX.Element {
 
         <div className="add-review__text">
           <textarea
+            {...reviewTextArea}
             className="add-review__textarea"
             name="review-text"
             id="review-text"
             placeholder="Review text"
-            value={review}
-            onInput={handleInputReview}
           />
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit">Post</button>
