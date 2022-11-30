@@ -9,27 +9,29 @@ import Player from '../../pages/player/player';
 import SignIn from '../../pages/sign-in/sign-in';
 import { AppRoute, AuthorizationStatus } from '../../consts';
 import PrivateRoute from '../private-route/private-route';
+import { FilmType } from '../../types/films';
+import { myList } from '../../mocks/my-list';
+import { GenreType } from '../../types/genres';
 
 type AppProps = {
-  name: string;
-  genre: string;
-  releaseYear: string;
+  films: FilmType[];
+  genres: GenreType[];
 }
 
-function App({ name, genre, releaseYear }: AppProps): JSX.Element {
+function App({ films, genres }: AppProps): JSX.Element {
   return (
     <Routes>
-      <Route path={AppRoute.Main} element={<Main name={name} genre={genre} releaseYear={releaseYear} />} />
+      <Route path={AppRoute.Main} element={<Main films={films} genres={genres} />} />
       <Route path={AppRoute.SignIn} element={<SignIn />} />
       <Route path={AppRoute.MyList} element={
         <PrivateRoute authorizationStatus={AuthorizationStatus.Unknown}>
-          <MyList />
+          <MyList films={myList} />
         </PrivateRoute>
       }
       />
-      <Route path={AppRoute.Film} element={<Film />} />
-      <Route path={AppRoute.AddReview} element={<AddReview />} />
-      <Route path={AppRoute.Player} element={<Player />} />
+      <Route path={AppRoute.Film} element={<Film films={films} />} />
+      <Route path={AppRoute.AddReview} element={<AddReview films={films} />} />
+      <Route path={AppRoute.Player} element={<Player films={films} />} />
       <Route path={AppRoute.NotFound} element={<NotFound />} />
     </Routes>
   );

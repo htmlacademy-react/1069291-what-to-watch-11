@@ -1,11 +1,27 @@
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { AppRoute } from '../../consts';
+import { FilmType } from '../../types/films';
 
-function Player(): JSX.Element {
+type PlayerProps = {
+  films: FilmType[];
+}
+
+function Player({ films }: PlayerProps): JSX.Element {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const currentFilm = films.find((film) => film.id === Number(id));
+
+  const handleClickOnExit = () => {
+    navigate(AppRoute.Main);
+  };
+
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
 
-      <button type="button" className="player__exit">Exit</button>
+      <button type="button" className="player__exit" onClick={handleClickOnExit}>Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -13,7 +29,7 @@ function Player(): JSX.Element {
             <progress className="player__progress" value="30" max="100"></progress>
             <div className="player__toggler" style={{ left: '30%' }}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{currentFilm?.time}</div>
         </div>
 
         <div className="player__controls-row">
