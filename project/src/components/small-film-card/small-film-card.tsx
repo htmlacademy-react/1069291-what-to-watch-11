@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FilmType } from '../../types/films';
+import VideoPlayer from '../video-player/video-player';
 
 type SmallFilmCardProps = {
   film: FilmType;
@@ -17,7 +18,7 @@ function SmallFilmCard({ film, active, handleMouseEnter, handleMouseLeave }: Sma
       onMouseLeave={handleMouseLeave}
     >
       <div className="small-film-card__image">
-        <img src={film.preview} alt={film.name} width="280" height="175" />
+        <VideoPlayer film={film} active={active} />
       </div>
       <h3 className="small-film-card__title">
         <Link to={`/films/${film.id}`} className="small-film-card__link">{film.name}</Link>
