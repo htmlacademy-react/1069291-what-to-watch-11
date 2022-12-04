@@ -1,3 +1,11 @@
+export type ReviewType = {
+  id: number;
+  author: string;
+  grade: number;
+  text: string;
+  date: string;
+}
+
 export type FilmType = {
   id: number;
   name: string;
@@ -10,4 +18,5 @@ export type FilmType = {
   director: string;
   starring: string[];
   description: string[];
+  reviews: ReviewType[];
 }

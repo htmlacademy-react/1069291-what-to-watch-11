@@ -4,6 +4,7 @@ import Catalog from '../../components/catalog/catalog';
 import FilmCardDesc from '../../components/film-card/partials/film-card-desc/film-card-desc';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import Tabs from '../../components/tabs/tabs';
 import { AppRoute } from '../../consts';
 import { moreLike } from '../../mocks/more-like';
 import { FilmType } from '../../types/films';
@@ -16,7 +17,6 @@ function Film({ films }: FilmProps): JSX.Element {
   const { id } = useParams();
 
   const currentFilm = films.find((film) => film.id === Number(id));
-  const description = currentFilm?.description as string[];
 
   if (!currentFilm) {return <Navigate to={AppRoute.Main} />;}
 
@@ -46,33 +46,7 @@ function Film({ films }: FilmProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="/" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="/" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="/" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">8,9</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">240 ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                { description?.map((text) => <p key={text}>{text}</p>) }
-                <p className="film-card__director"><strong>Director: { currentFilm.director }</strong></p>
-                <p className="film-card__starring"><strong>Starring: { currentFilm.starring.join(', ') }</strong></p>
-              </div>
+              <Tabs film={currentFilm} />
             </div>
           </div>
         </div>

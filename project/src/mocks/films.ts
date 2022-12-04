@@ -29,6 +29,71 @@ export const films: FilmType[] = [
       'Jude Law',
       'Willem Dafoe',
     ],
+    reviews: [
+      {
+        id: 1,
+        author: 'Kate Muir',
+        grade: 8.9,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2019-10-16',
+      },
+      {
+        id: 2,
+        author: 'Kate Muiasdar',
+        grade: 8.2,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 3,
+        author: 'Kate Muir2',
+        grade: 8.0,
+        text: 'Discerning travellers and Wes Andersosch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 4,
+        author: 'Kate Muir3',
+        grade: 7.2,
+        text: 'Discerning travellers and Wetel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 5,
+        author: 'Kate Muir4',
+        grade: 4.6,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 6,
+        author: 'Kate Muir4',
+        grade: 3.6,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 7,
+        author: 'Kate Muir4',
+        grade: 3.5,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 8,
+        author: 'Kate Muir4',
+        grade: 3.3,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 9,
+        author: 'Kate Muir4',
+        grade: 3.1,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+    ]
   },
   {
     id: 2,
@@ -50,6 +115,36 @@ export const films: FilmType[] = [
       'Jude Law',
       'Willem Dafoe',
     ],
+    reviews: [
+      {
+        id: 1,
+        author: 'Kate Muir',
+        grade: 8.9,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 2,
+        author: 'Kate Muir2',
+        grade: 8.0,
+        text: 'Discerning travellers and Wes Andersosch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 3,
+        author: 'Kate Muir3',
+        grade: 7.2,
+        text: 'Discerning travellers and Wetel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 4,
+        author: 'Kate Muir4',
+        grade: 4.6,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+    ]
   },
   {
     id: 3,
@@ -71,6 +166,36 @@ export const films: FilmType[] = [
       'Jude Law',
       'Willem Dafoe',
     ],
+    reviews: [
+      {
+        id: 1,
+        author: 'Kate Muir',
+        grade: 8.9,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 2,
+        author: 'Kate Muir2',
+        grade: 8.0,
+        text: 'Discerning travellers and Wes Andersosch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 3,
+        author: 'Kate Muir3',
+        grade: 7.2,
+        text: 'Discerning travellers and Wetel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 4,
+        author: 'Kate Muir4',
+        grade: 4.6,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+    ]
   },
   {
     id: 4,
@@ -92,6 +217,36 @@ export const films: FilmType[] = [
       'Jude Law',
       'Willem Dafoe',
     ],
+    reviews: [
+      {
+        id: 1,
+        author: 'Kate Muir',
+        grade: 8.9,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 2,
+        author: 'Kate Muir2',
+        grade: 8.0,
+        text: 'Discerning travellers and Wes Andersosch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 3,
+        author: 'Kate Muir3',
+        grade: 7.2,
+        text: 'Discerning travellers and Wetel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 4,
+        author: 'Kate Muir4',
+        grade: 4.6,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+    ]
   },
   {
     id: 5,
@@ -113,6 +268,36 @@ export const films: FilmType[] = [
       'Jude Law',
       'Willem Dafoe',
     ],
+    reviews: [
+      {
+        id: 1,
+        author: 'Kate Muir',
+        grade: 8.9,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 2,
+        author: 'Kate Muir2',
+        grade: 8.0,
+        text: 'Discerning travellers and Wes Andersosch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 3,
+        author: 'Kate Muir3',
+        grade: 7.2,
+        text: 'Discerning travellers and Wetel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 4,
+        author: 'Kate Muir4',
+        grade: 4.6,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+    ]
   },
   {
     id: 6,
@@ -134,6 +319,36 @@ export const films: FilmType[] = [
       'Jude Law',
       'Willem Dafoe',
     ],
+    reviews: [
+      {
+        id: 1,
+        author: 'Kate Muir',
+        grade: 8.9,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 2,
+        author: 'Kate Muir2',
+        grade: 8.0,
+        text: 'Discerning travellers and Wes Andersosch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 3,
+        author: 'Kate Muir3',
+        grade: 7.2,
+        text: 'Discerning travellers and Wetel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 4,
+        author: 'Kate Muir4',
+        grade: 4.6,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+    ]
   },
   {
     id: 7,
@@ -155,6 +370,36 @@ export const films: FilmType[] = [
       'Jude Law',
       'Willem Dafoe',
     ],
+    reviews: [
+      {
+        id: 1,
+        author: 'Kate Muir',
+        grade: 8.9,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 2,
+        author: 'Kate Muir2',
+        grade: 8.0,
+        text: 'Discerning travellers and Wes Andersosch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 3,
+        author: 'Kate Muir3',
+        grade: 7.2,
+        text: 'Discerning travellers and Wetel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 4,
+        author: 'Kate Muir4',
+        grade: 4.6,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+    ]
   },
   {
     id: 8,
@@ -176,5 +421,35 @@ export const films: FilmType[] = [
       'Jude Law',
       'Willem Dafoe',
     ],
+    reviews: [
+      {
+        id: 1,
+        author: 'Kate Muir',
+        grade: 8.9,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 2,
+        author: 'Kate Muir2',
+        grade: 8.0,
+        text: 'Discerning travellers and Wes Andersosch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 3,
+        author: 'Kate Muir3',
+        grade: 7.2,
+        text: 'Discerning travellers and Wetel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+      {
+        id: 4,
+        author: 'Kate Muir4',
+        grade: 4.6,
+        text: 'Discerning travellers and Wes Anderson fans will luxuriate in the gloriou Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.',
+        date: '2016-12-24',
+      },
+    ]
   },
 ];
