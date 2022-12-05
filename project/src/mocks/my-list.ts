@@ -9,7 +9,7 @@ export const myList: FilmType[] = [
   {
     id: 2,
     name: 'Bohemian Rhapsody',
-    genre: 'Drama',
+    genre: 4,
     year: '2012',
     preview: rhapsody,
     movie: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -60,7 +60,7 @@ export const myList: FilmType[] = [
   {
     id: 3,
     name: 'Macbeth',
-    genre: 'Horror',
+    genre: 5,
     year: '2012',
     preview: macbeth,
     movie: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -111,7 +111,7 @@ export const myList: FilmType[] = [
   {
     id: 4,
     name: 'Aviator',
-    genre: 'Drama',
+    genre: 4,
     year: '2011',
     preview: aviator,
     movie: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -162,7 +162,7 @@ export const myList: FilmType[] = [
   {
     id: 5,
     name: 'We need to talk about Kevin',
-    genre: 'Drama',
+    genre: 4,
     year: '2013',
     preview: kevin,
     movie: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -213,7 +213,7 @@ export const myList: FilmType[] = [
   {
     id: 6,
     name: 'What We Do in the Shadows',
-    genre: 'Drama',
+    genre: 4,
     year: '2015',
     preview: shadows,
     movie: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',

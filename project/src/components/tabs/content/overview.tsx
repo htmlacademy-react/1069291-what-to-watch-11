@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FilmType } from '../../../types/films';
 
 type OverviewProps = {
@@ -6,28 +6,32 @@ type OverviewProps = {
 }
 
 function Overview({ film }: OverviewProps): JSX.Element {
-  const status = () => {
+  const [status, setStatus] = useState<string>('');
+
+  useEffect(() => {
+    let statusName = '';
+
     if (film.rating < 2) {
-      return 'Very bad';
+      statusName = 'Very bad';
     } else if (film.rating < 4) {
-      return 'Bad';
+      statusName = 'Bad';
     } else if (film.rating < 6) {
-      return 'Good';
+      statusName = 'Good';
     } else if (film.rating < 8) {
-      return 'Very Good';
+      statusName = 'Very Good';
     } else if (film.rating <= 10) {
-      return 'Delightful';
+      statusName = 'Delightful';
     }
 
-    return 'Unknown';
-  };
+    setStatus(statusName);
+  }, [film.rating]);
 
   return (
     <>
       <div className="film-rating">
         <div className="film-rating__score">{String(film.rating).replace('.', ',')}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">{ status() }</span>
+          <span className="film-rating__level">{ status }</span>
           <span className="film-rating__count">{ film.reviews.length } ratings</span>
         </p>
       </div>

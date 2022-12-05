@@ -1,41 +1,62 @@
-import React from 'react';
+import classNames from 'classnames';
+import React, { useState, MouseEvent } from 'react';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { films } from '../../mocks/films';
+import { changeGenre, updateFilms } from '../../store/action';
 import { FilmType } from '../../types/films';
 import { GenreType } from '../../types/genres';
 import FilmList from '../film-list/film-list';
 
 type CatalogProps = {
   className?: string;
-  films: FilmType[];
-  genres?: GenreType[];
+  filteredfilms: FilmType[];
   title?: string;
-  maxCount?: number;
+  genres?: GenreType[];
 }
 
-function Catalog({ className, films, genres, maxCount, title }: CatalogProps): JSX.Element {
+function Catalog({ className, title, genres, filteredfilms }: CatalogProps): JSX.Element {
+  const [maxCount, setMaxCount] = useState<number>(8);
+  const genreId = useAppSelector((state) => state.genre);
 
-  const filteredFilms = maxCount ? films.slice(0, maxCount) : films;
-  const isShowMoreBtn = filteredFilms.length < films.length;
+  const dispatch = useAppDispatch();
+
+  const filteredGenres: GenreType[] = genres ? genres.filter(({ id }) => films.find(({ genre }) => genre === id)) : [];
+
+  const filmsFilteredByNumber = maxCount ? filteredfilms.slice(0, maxCount) : filteredfilms;
+
+  const isShowMoreBtn = filmsFilteredByNumber.length < filteredfilms.length;
+
+  const handleClickGenre = (e: MouseEvent<HTMLAnchorElement>, id: number) => {
+    e.preventDefault();
+
+    dispatch(changeGenre(id));
+    dispatch(updateFilms(true));
+  };
 
   return (
     <section className={`catalog ${className ? className : ''}`}>
       {title && <h2 className="catalog__title">{title}</h2>}
 
-      {genres &&
+      {genres && filteredGenres &&
         <ul className="catalog__genres-list">
-          <li className="catalog__genres-item catalog__genres-item--active">
-            <a href="/" className="catalog__genres-link">All genres</a>
+          <li className={classNames('catalog__genres-item', { 'catalog__genres-item--active': genreId === 0 })}>
+            <a href="/" className="catalog__genres-link" onClick={(e) => handleClickGenre(e, 0)}>All genres</a>
           </li>
-          {genres.map(({ id, name, link }) => (
-            <li key={id} className="catalog__genres-item">
-              <a href={link} className="catalog__genres-link">{name}</a>
+          {filteredGenres.map(({ id, name }) => (
+            <li
+              key={id}
+              className={classNames('catalog__genres-item', { 'catalog__genres-item--active': genreId === id })}
+            >
+              <a href="/" className="catalog__genres-link" onClick={(e) => handleClickGenre(e, id)}>{name}</a>
             </li>))}
         </ul> }
 
-      <FilmList films={filteredFilms} />
+      <FilmList films={filmsFilteredByNumber} />
 
       {isShowMoreBtn &&
         <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
+          <button className="catalog__button" type="button" onClick={() => setMaxCount((value) => value + 4)}>Show more</button>
         </div>}
     </section>
   );
