@@ -7,6 +7,7 @@ import { changeGenre, updateFilms } from '../../store/action';
 import { FilmType } from '../../types/films';
 import { GenreType } from '../../types/genres';
 import FilmList from '../film-list/film-list';
+import ShowMoreBtn from '../show-more-btn/show-more-btn';
 
 type CatalogProps = {
   className?: string;
@@ -34,6 +35,10 @@ function Catalog({ className, title, genres, filteredfilms }: CatalogProps): JSX
     dispatch(updateFilms(true));
   };
 
+  const handleClickShowMore = () => {
+    setMaxCount((value) => value + 8);
+  };
+
   return (
     <section className={`catalog ${className ? className : ''}`}>
       {title && <h2 className="catalog__title">{title}</h2>}
@@ -54,10 +59,7 @@ function Catalog({ className, title, genres, filteredfilms }: CatalogProps): JSX
 
       <FilmList films={filmsFilteredByNumber} />
 
-      {isShowMoreBtn &&
-        <div className="catalog__more">
-          <button className="catalog__button" type="button" onClick={() => setMaxCount((value) => value + 4)}>Show more</button>
-        </div>}
+      {isShowMoreBtn && <ShowMoreBtn handleClick={handleClickShowMore} />}
     </section>
   );
 }

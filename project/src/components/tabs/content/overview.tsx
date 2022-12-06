@@ -9,21 +9,17 @@ function Overview({ film }: OverviewProps): JSX.Element {
   const [status, setStatus] = useState<string>('');
 
   useEffect(() => {
-    let statusName = '';
-
     if (film.rating < 2) {
-      statusName = 'Very bad';
+      setStatus('Very bad');
     } else if (film.rating < 4) {
-      statusName = 'Bad';
+      setStatus('Bad');
     } else if (film.rating < 6) {
-      statusName = 'Good';
+      setStatus('Good');
     } else if (film.rating < 8) {
-      statusName = 'Very Good';
+      setStatus('Very Good');
     } else if (film.rating <= 10) {
-      statusName = 'Delightful';
+      setStatus('Delightful');
     }
-
-    setStatus(statusName);
   }, [film.rating]);
 
   return (
