@@ -9,7 +9,7 @@ export type ReviewType = {
 export type FilmType = {
   id: number;
   name: string;
-  genre: string;
+  genre: number;
   year: string;
   preview: string;
   movie: string;

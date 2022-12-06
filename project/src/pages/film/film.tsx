@@ -53,7 +53,7 @@ function Film({ films }: FilmProps): JSX.Element {
       </section>
 
       <div className="page-content">
-        <Catalog className="catalog--like-this" films={moreLike} title="More like this" />
+        <Catalog className="catalog--like-this" filteredfilms={moreLike} title="More like this" />
         <Footer />
       </div>
     </>

@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Catalog from '../../components/catalog/catalog';
 import FilmCard from '../../components/film-card/film-card';
 import Footer from '../../components/footer/footer';
-import { FilmType } from '../../types/films';
-import { GenreType } from '../../types/genres';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { genres } from '../../mocks/genres';
+import { updateFilms } from '../../store/action';
 
-type MainProps = {
-  films: FilmType[];
-  genres: GenreType[];
-}
+function Main(): JSX.Element {
+  const films = useAppSelector((state) => state.films);
 
-function Main({ films, genres }: MainProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(updateFilms(true));
+  }, [dispatch]);
+
   return (
     <div>
-      <FilmCard film={films[0]} />
+      {films[0] && <FilmCard film={films[0]} />}
 
       <div className="page-content">
-        <Catalog films={films} genres={genres} maxCount={4} />
+        <Catalog filteredfilms={films} genres={genres} />
         <Footer />
       </div>
     </div>

@@ -11,17 +11,15 @@ import { AppRoute, AuthorizationStatus } from '../../consts';
 import PrivateRoute from '../private-route/private-route';
 import { FilmType } from '../../types/films';
 import { myList } from '../../mocks/my-list';
-import { GenreType } from '../../types/genres';
 
 type AppProps = {
   films: FilmType[];
-  genres: GenreType[];
 }
 
-function App({ films, genres }: AppProps): JSX.Element {
+function App({ films }: AppProps): JSX.Element {
   return (
     <Routes>
-      <Route path={AppRoute.Main} element={<Main films={films} genres={genres} />} />
+      <Route path={AppRoute.Main} element={<Main />} />
       <Route path={AppRoute.SignIn} element={<SignIn />} />
       <Route path={AppRoute.MyList} element={
         <PrivateRoute authorizationStatus={AuthorizationStatus.Unknown}>
