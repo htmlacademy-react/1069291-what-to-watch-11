@@ -1,31 +1,43 @@
-import React from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Catalog from '../../components/catalog/catalog';
 import FilmCardDesc from '../../components/film-card/partials/film-card-desc/film-card-desc';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import Spinner from '../../components/spinner/spinner';
 import Tabs from '../../components/tabs/tabs';
-import { AppRoute } from '../../consts';
-import { moreLike } from '../../mocks/more-like';
-import { FilmType } from '../../types/films';
+import { AuthorizationStatus } from '../../consts';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { clearFilmInfo, clearSimilar } from '../../store/action';
+import { fetchFilmInfoAction, fetchSimilarAction } from '../../store/api-actions';
 
-type FilmProps = {
-  films: FilmType[];
-}
-
-function Film({ films }: FilmProps): JSX.Element {
+function Film(): JSX.Element {
+  const film = useAppSelector((state) => state.filmInfo);
+  const similar = useAppSelector((state) => state.similar);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const { id } = useParams();
 
-  const currentFilm = films.find((film) => film.id === Number(id));
+  const dispatch = useAppDispatch();
 
-  if (!currentFilm) {return <Navigate to={AppRoute.Main} />;}
+  useEffect(() => {
+    dispatch(fetchFilmInfoAction(Number(id)));
+    dispatch(fetchSimilarAction(Number(id)));
+
+    return () => {
+      dispatch(clearFilmInfo());
+      dispatch(clearSimilar());
+    };
+  }, [dispatch, id]);
+
+  if (!film) {return <Spinner />;}
 
   return (
     <>
-      <section className="film-card film-card--full">
+      <section className="film-card film-card--full" style={{ background: film.backgroundColor }}>
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={film.backgroundImage} alt={film.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -33,8 +45,8 @@ function Film({ films }: FilmProps): JSX.Element {
           <Header className="film-card__head" userBlock />
 
           <div className="film-card__wrap">
-            <FilmCardDesc film={currentFilm}>
-              <Link to={`/films/${currentFilm.id}/review`} className="btn film-card__button">Add review</Link>
+            <FilmCardDesc film={film}>
+              {authorizationStatus === AuthorizationStatus.Auth && <Link to={`/films/${film.id}/review`} className="btn film-card__button">Add review</Link>}
             </FilmCardDesc>
           </div>
         </div>
@@ -42,18 +54,18 @@ function Film({ films }: FilmProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={currentFilm.preview} alt={currentFilm.name} width="218" height="327" />
+              <img src={film.posterImage} alt={film.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <Tabs film={currentFilm} />
+              <Tabs film={film} />
             </div>
           </div>
         </div>
       </section>
 
       <div className="page-content">
-        <Catalog className="catalog--like-this" filteredfilms={moreLike} title="More like this" />
+        {similar.length && <Catalog className="catalog--like-this" filteredfilms={similar} title="More like this" />}
         <Footer />
       </div>
     </>

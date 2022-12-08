@@ -1,22 +1,21 @@
-export type ReviewType = {
+export type FilmType = {
+  backgroundColor: string;
+  backgroundImage: string;
+  description: string;
+  director: string;
+  genre: string;
   id: number;
-  author: string;
-  grade: number;
-  text: string;
-  date: string;
+  isFavorite: boolean;
+  name: string;
+  posterImage: string;
+  previewImage: string;
+  previewVideoLink: string;
+  rating: number;
+  released: number;
+  runTime: number;
+  scoresCount: number;
+  starring: string[];
+  videoLink: string;
 }
 
-export type FilmType = {
-  id: number;
-  name: string;
-  genre: number;
-  year: string;
-  preview: string;
-  movie: string;
-  time: string;
-  rating: number;
-  director: string;
-  starring: string[];
-  description: string[];
-  reviews: ReviewType[];
-}
+export type FilmsType = FilmType[];

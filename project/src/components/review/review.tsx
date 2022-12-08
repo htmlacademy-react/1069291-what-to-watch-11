@@ -1,10 +1,10 @@
 import React from 'react';
 import { Months } from '../../consts';
-import { ReviewType } from '../../types/films';
+import { Comment } from '../../types/comments';
 
 
 type ReviewProps = {
-  review: ReviewType;
+  review: Comment;
 }
 
 function Review({ review }: ReviewProps): JSX.Element {
@@ -14,15 +14,15 @@ function Review({ review }: ReviewProps): JSX.Element {
   return (
     <div className="review">
       <blockquote className="review__quote">
-        <p className="review__text">{review.text}</p>
+        <p className="review__text">{review.comment}</p>
 
         <footer className="review__details">
-          <cite className="review__author">{review.author}</cite>
+          <cite className="review__author">{review.user.name}</cite>
           <time className="review__date" dateTime="2016-12-24">{formatedDate}</time>
         </footer>
       </blockquote>
 
-      <div className="review__rating">{String(review.grade).replace('.', ',')}</div>
+      <div className="review__rating">{String(review.rating).replace('.', ',')}</div>
     </div>
   );
 }

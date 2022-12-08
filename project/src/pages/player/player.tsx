@@ -29,7 +29,7 @@ function Player({ films }: PlayerProps): JSX.Element {
             <progress className="player__progress" value="30" max="100"></progress>
             <div className="player__toggler" style={{ left: '30%' }}>Toggler</div>
           </div>
-          <div className="player__time-value">{currentFilm?.time}</div>
+          <div className="player__time-value">{currentFilm?.runTime}</div>
         </div>
 
         <div className="player__controls-row">

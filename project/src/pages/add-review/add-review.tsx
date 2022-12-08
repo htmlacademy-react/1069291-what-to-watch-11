@@ -1,37 +1,38 @@
 import React from 'react';
-import { FilmType } from '../../types/films';
 import { Navigate, useParams } from 'react-router-dom';
 import Header from '../../components/header/header';
-import { AppRoute } from '../../consts';
+import { AppRoute, AuthorizationStatus } from '../../consts';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import Spinner from '../../components/spinner/spinner';
 
-type AddReviewProps = {
-  films: FilmType[];
-}
+function AddReview(): JSX.Element {
+  const films = useAppSelector((state) => state.films);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-function AddReview({ films }: AddReviewProps): JSX.Element {
   const { id } = useParams();
 
-  const currentFilm = films.find((film) => film.id === Number(id));
+  const film = films.find((el) => el.id === Number(id));
 
-  if (!currentFilm) {return <Navigate to={AppRoute.Main} />;}
+  if (authorizationStatus !== AuthorizationStatus.Auth) {return <Navigate to={AppRoute.SignIn} />;}
+  if (!film) {return <Spinner />;}
 
   return (
-    <section className="film-card film-card--full">
+    <section className="film-card film-card--full" style={{ background: film.backgroundColor }}>
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={currentFilm.preview} alt={currentFilm.name} />
+          <img src={film.backgroundImage} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header breadcrumbs film={currentFilm} />
+        <Header breadcrumbs film={film} />
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={currentFilm?.preview} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={film.posterImage} alt={film.name} width="218" height="327" />
         </div>
       </div>
-      <AddReviewForm />
+      <AddReviewForm film={film} />
     </section>
   );
 }
