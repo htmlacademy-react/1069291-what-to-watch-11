@@ -1,37 +1,44 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AddReview from '../../pages/add-review/add-review';
-import Film from '../../pages/film/film';
 import Main from '../../pages/main/main';
 import MyList from '../../pages/my-list/my-list';
 import NotFound from '../../pages/not-found/not-found';
-import Player from '../../pages/player/player';
 import SignIn from '../../pages/sign-in/sign-in';
-import { AppRoute, AuthorizationStatus } from '../../consts';
+import { AppRoute } from '../../consts';
 import PrivateRoute from '../private-route/private-route';
-import { FilmType } from '../../types/films';
-import { myList } from '../../mocks/my-list';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import Spinner from '../spinner/spinner';
+import s from './app.module.scss';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
+import Film from '../../pages/film/film';
+import AddReview from '../../pages/add-review/add-review';
+import Player from '../../pages/player/player';
 
-type AppProps = {
-  films: FilmType[];
-}
+function App(): JSX.Element {
+  const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
 
-function App({ films }: AppProps): JSX.Element {
+  if (isFilmsDataLoading) {
+    return <div className={s.spinner}><Spinner /></div>;
+  }
+
   return (
-    <Routes>
-      <Route path={AppRoute.Main} element={<Main />} />
-      <Route path={AppRoute.SignIn} element={<SignIn />} />
-      <Route path={AppRoute.MyList} element={
-        <PrivateRoute authorizationStatus={AuthorizationStatus.Unknown}>
-          <MyList films={myList} />
-        </PrivateRoute>
-      }
-      />
-      <Route path={AppRoute.Film} element={<Film films={films} />} />
-      <Route path={AppRoute.AddReview} element={<AddReview films={films} />} />
-      <Route path={AppRoute.Player} element={<Player films={films} />} />
-      <Route path={AppRoute.NotFound} element={<NotFound />} />
-    </Routes>
+    <HistoryRouter history={browserHistory}>
+      <Routes>
+        <Route path={AppRoute.Main} element={<Main />} />
+        <Route path={AppRoute.SignIn} element={<SignIn />} />
+        <Route path={AppRoute.MyList} element={
+          <PrivateRoute>
+            <MyList films={[]} />
+          </PrivateRoute>
+        }
+        />
+        <Route path={AppRoute.Film} element={<Film />} />
+        <Route path={AppRoute.AddReview} element={<AddReview />} />
+        <Route path={AppRoute.Player} element={<Player films={[]} />} />
+        <Route path={AppRoute.NotFound} element={<NotFound />} />
+      </Routes>
+    </HistoryRouter>
   );
 }
 

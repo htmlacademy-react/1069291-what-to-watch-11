@@ -1,9 +1,8 @@
 import classNames from 'classnames';
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent, useCallback } from 'react';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { films } from '../../mocks/films';
-import { changeGenre, updateFilms } from '../../store/action';
+import { changeGenre } from '../../store/action';
 import { FilmType } from '../../types/films';
 import { GenreType } from '../../types/genres';
 import FilmList from '../film-list/film-list';
@@ -19,10 +18,11 @@ type CatalogProps = {
 function Catalog({ className, title, genres, filteredfilms }: CatalogProps): JSX.Element {
   const [maxCount, setMaxCount] = useState<number>(8);
   const genreId = useAppSelector((state) => state.genre);
+  const films = useAppSelector((state) => state.films);
 
   const dispatch = useAppDispatch();
 
-  const filteredGenres: GenreType[] = genres ? genres.filter(({ id }) => films.find(({ genre }) => genre === id)) : [];
+  const filteredGenres: GenreType[] = genres ? genres.filter(({ name }) => films.find(({ genre }) => genre === name)) : [];
 
   const filmsFilteredByNumber = maxCount ? filteredfilms.slice(0, maxCount) : filteredfilms;
 
@@ -32,12 +32,11 @@ function Catalog({ className, title, genres, filteredfilms }: CatalogProps): JSX
     e.preventDefault();
 
     dispatch(changeGenre(id));
-    dispatch(updateFilms(true));
   };
 
-  const handleClickShowMore = () => {
+  const handleClickShowMore = useCallback(() => {
     setMaxCount((value) => value + 8);
-  };
+  }, []);
 
   return (
     <section className={`catalog ${className ? className : ''}`}>

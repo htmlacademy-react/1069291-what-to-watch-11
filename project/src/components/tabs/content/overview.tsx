@@ -28,12 +28,12 @@ function Overview({ film }: OverviewProps): JSX.Element {
         <div className="film-rating__score">{String(film.rating).replace('.', ',')}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">{ status }</span>
-          <span className="film-rating__count">{ film.reviews.length } ratings</span>
+          <span className="film-rating__count">{ film.scoresCount } ratings</span>
         </p>
       </div>
 
       <div className="film-card__text">
-        { film.description.map((text) => <p key={ text }>{ text }</p>) }
+        <p>{ film.description }</p>
         <p className="film-card__director"><strong>Director: { film.director }</strong></p>
         <p className="film-card__starring"><strong>Starring: { film.starring.join(', ') }</strong></p>
       </div>

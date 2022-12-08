@@ -31,14 +31,14 @@ function VideoPlayer({ film, active }: VideoPlayerProps): JSX.Element {
   return (
     <video
       ref={videoRef}
-      src={active ? film.movie : ''}
-      poster={film.preview}
+      src={active ? film.previewVideoLink : ''}
+      poster={film.previewImage}
       muted
       width="280"
       height="175"
       preload="none"
     >
-      <img src={film.preview} alt={film.name} />
+      <img src={film.previewImage} alt={film.name} />
     </video>
   );
 }
