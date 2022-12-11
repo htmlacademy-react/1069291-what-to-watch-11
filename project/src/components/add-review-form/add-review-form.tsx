@@ -9,7 +9,6 @@ type AddReviewProps = {
   film: FilmType;
 }
 
-
 function AddReviewForm({ film }: AddReviewProps): JSX.Element {
   const [rating, setRating] = useState<number>(Math.round(film.rating));
 
