@@ -13,7 +13,7 @@ function FilmCardDesc({ film, children }: FilmCardDescProps): JSX.Element {
   const navigate = useNavigate();
 
   const handleClickOnPlayBtn = () => {
-    navigate(AppRoute.Player);
+    navigate(AppRoute.Player.replace(':id', String(film.id)));
   };
 
   const handleClickOnMyListBtn = () => {

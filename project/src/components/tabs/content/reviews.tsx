@@ -24,7 +24,7 @@ function Reviews({ film }:ReviewsProps): JSX.Element {
     return () => {
       dispatch(clearComments());
     };
-  }, [dispatch, film.id]);
+  }, [dispatch, film]);
 
   return (
     <div className="film-card__reviews film-card__row">

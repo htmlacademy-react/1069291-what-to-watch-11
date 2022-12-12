@@ -65,7 +65,7 @@ function Film(): JSX.Element {
       </section>
 
       <div className="page-content">
-        {similar.length && <Catalog className="catalog--like-this" filteredfilms={similar} title="More like this" />}
+        {similar.length && <Catalog className="catalog--like-this" films={similar.slice(0, 4)} title="More like this" />}
         <Footer />
       </div>
     </>

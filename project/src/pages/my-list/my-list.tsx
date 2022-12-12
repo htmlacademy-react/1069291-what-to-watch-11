@@ -12,7 +12,7 @@ function MyList({ films }: MyListProps): JSX.Element {
   return (
     <div className="user-page">
       <Header className="user-page__head" title={{text: 'My list', info: '9'}} />
-      <Catalog filteredfilms={films} />
+      <Catalog films={films} />
       <Footer />
     </div>
   );

@@ -1,37 +1,43 @@
 import classNames from 'classnames';
 import React, { useState, MouseEvent, useCallback } from 'react';
+import { ALL_GENRES_CATEGORY_NAME } from '../../consts';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { changeGenre } from '../../store/action';
 import { FilmType } from '../../types/films';
-import { GenreType } from '../../types/genres';
 import FilmList from '../film-list/film-list';
 import ShowMoreBtn from '../show-more-btn/show-more-btn';
 
 type CatalogProps = {
   className?: string;
-  filteredfilms: FilmType[];
+  films: FilmType[];
   title?: string;
-  genres?: GenreType[];
+  withGenres?: boolean;
 }
 
-function Catalog({ className, title, genres, filteredfilms }: CatalogProps): JSX.Element {
+function Catalog({ className, title, films, withGenres }: CatalogProps): JSX.Element {
   const [maxCount, setMaxCount] = useState<number>(8);
-  const genreId = useAppSelector((state) => state.genre);
-  const films = useAppSelector((state) => state.films);
+  const activeGenre = useAppSelector((state) => state.activeGenre);
 
   const dispatch = useAppDispatch();
 
-  const filteredGenres: GenreType[] = genres ? genres.filter(({ name }) => films.find(({ genre }) => genre === name)) : [];
+  const genres: string[] = [ALL_GENRES_CATEGORY_NAME, ...films.reduce((prev: string[], film: FilmType) => {
+    if (!prev.find((el) => el === film.genre)) {
+      return [...prev, film.genre];
+    } else {
+      return prev;
+    }
+  }, [])].slice(0, 10);
 
-  const filmsFilteredByNumber = maxCount ? filteredfilms.slice(0, maxCount) : filteredfilms;
+  const filmsFilteredByGenres = withGenres && activeGenre !== ALL_GENRES_CATEGORY_NAME ? films.filter(({ genre }) => activeGenre === genre) : films;
+  const filmsFilteredByNumber = maxCount ? filmsFilteredByGenres.slice(0, maxCount) : filmsFilteredByGenres;
 
-  const isShowMoreBtn = filmsFilteredByNumber.length < filteredfilms.length;
+  const isShowMoreBtn = filmsFilteredByNumber.length < filmsFilteredByGenres.length;
 
-  const handleClickGenre = (e: MouseEvent<HTMLAnchorElement>, id: number) => {
+  const handleClickGenre = (e: MouseEvent<HTMLAnchorElement>, genre: string) => {
     e.preventDefault();
 
-    dispatch(changeGenre(id));
+    dispatch(changeGenre(genre));
   };
 
   const handleClickShowMore = useCallback(() => {
@@ -42,17 +48,14 @@ function Catalog({ className, title, genres, filteredfilms }: CatalogProps): JSX
     <section className={`catalog ${className ? className : ''}`}>
       {title && <h2 className="catalog__title">{title}</h2>}
 
-      {genres && filteredGenres &&
+      {withGenres && genres &&
         <ul className="catalog__genres-list">
-          <li className={classNames('catalog__genres-item', { 'catalog__genres-item--active': genreId === 0 })}>
-            <a href="/" className="catalog__genres-link" onClick={(e) => handleClickGenre(e, 0)}>All genres</a>
-          </li>
-          {filteredGenres.map(({ id, name }) => (
+          {genres.map((genre) => (
             <li
-              key={id}
-              className={classNames('catalog__genres-item', { 'catalog__genres-item--active': genreId === id })}
+              key={genre}
+              className={classNames('catalog__genres-item', { 'catalog__genres-item--active': activeGenre === genre })}
             >
-              <a href="/" className="catalog__genres-link" onClick={(e) => handleClickGenre(e, id)}>{name}</a>
+              <a href="/" className="catalog__genres-link" onClick={(e) => handleClickGenre(e, genre)}>{genre}</a>
             </li>))}
         </ul> }
 

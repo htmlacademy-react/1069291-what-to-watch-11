@@ -1,27 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback, useState } from 'react';
 import { FilmType } from '../../types/films';
 import VideoPlayer from '../video-player/video-player';
 
 type SmallFilmCardProps = {
   film: FilmType;
-  active: boolean;
-  handleMouseEnter: (film: FilmType) => void;
-  handleMouseLeave: () => void;
+  onClick: (id: number) => void;
 }
 
-function SmallFilmCard({ film, active, handleMouseEnter, handleMouseLeave }: SmallFilmCardProps): JSX.Element {
+function SmallFilmCard({ film, onClick }: SmallFilmCardProps): JSX.Element {
+  const [active, setActive] = useState<boolean>(false);
+
+  const handleMouseEnter = useCallback(() => {
+    setActive(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setActive(false);
+  }, []);
+
   return (
     <article
       className="small-film-card catalog__films-card"
-      onMouseEnter={() => handleMouseEnter(film)}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      style={{ cursor: 'pointer' }}
+      onClick={() => onClick(film.id)}
     >
       <div className="small-film-card__image">
         <VideoPlayer film={film} active={active} />
       </div>
       <h3 className="small-film-card__title">
-        <Link to={`/films/${film.id}`} className="small-film-card__link">{film.name}</Link>
+        <span className="small-film-card__link">{film.name}</span>
       </h3>
     </article>
   );

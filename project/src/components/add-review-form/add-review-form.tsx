@@ -1,4 +1,5 @@
 import React, { FormEvent, useState } from 'react';
+import { MAX_COUNT_REVIEW, MIN_COUNT_REVIEW } from '../../consts';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import useTextarea from '../../hooks/useTextarea';
 import { addCommentsAction } from '../../store/api-actions';
@@ -14,7 +15,9 @@ function AddReviewForm({ film }: AddReviewProps): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const reviewTextArea = useTextarea('');
+  const reviewTextArea = useTextarea('', MAX_COUNT_REVIEW);
+
+  const isDisableBtn = reviewTextArea.value.length < MIN_COUNT_REVIEW;
 
   const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,7 +43,7 @@ function AddReviewForm({ film }: AddReviewProps): JSX.Element {
             placeholder="Review text"
           />
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">Post</button>
+            <button className="add-review__btn" type="submit" disabled={isDisableBtn}>Post</button>
           </div>
 
         </div>

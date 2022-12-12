@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { RatingStatus } from '../../../consts';
 import { FilmType } from '../../../types/films';
 
 type OverviewProps = {
@@ -9,16 +10,16 @@ function Overview({ film }: OverviewProps): JSX.Element {
   const [status, setStatus] = useState<string>('');
 
   useEffect(() => {
-    if (film.rating < 2) {
-      setStatus('Very bad');
-    } else if (film.rating < 4) {
-      setStatus('Bad');
-    } else if (film.rating < 6) {
-      setStatus('Good');
+    if (film.rating < 3) {
+      setStatus(RatingStatus.Bad);
+    } else if (film.rating < 5) {
+      setStatus(RatingStatus.Normal);
     } else if (film.rating < 8) {
-      setStatus('Very Good');
-    } else if (film.rating <= 10) {
-      setStatus('Delightful');
+      setStatus(RatingStatus.Good);
+    } else if (film.rating < 10) {
+      setStatus(RatingStatus.VeryGood);
+    } else if (film.rating === 10) {
+      setStatus(RatingStatus.Awesome);
     }
   }, [film.rating]);
 

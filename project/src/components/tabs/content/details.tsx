@@ -1,4 +1,5 @@
 import React from 'react';
+import toFormatTime from '../../../toolkits/toFormatTime';
 import { FilmType } from '../../../types/films';
 
 type DetailsProps = {
@@ -16,7 +17,7 @@ function Details({ film }: DetailsProps): JSX.Element {
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {film.starring.map((name) => <div key={name}>{name},</div>)}
+            {film.starring.map((name, index) => <div key={name}>{ name }{ index === film.starring.length - 1 ? '' : ',' }</div>)}
           </span>
         </p>
       </div>
@@ -24,7 +25,7 @@ function Details({ film }: DetailsProps): JSX.Element {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{film.runTime}</span>
+          <span className="film-card__details-value">{toFormatTime(film.runTime)}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>

@@ -1,36 +1,36 @@
 import {createReducer} from '@reduxjs/toolkit';
-import { AuthorizationStatus } from '../consts';
+import { ALL_GENRES_CATEGORY_NAME } from '../consts';
 import { Comments } from '../types/comments';
 import { FilmsType, FilmType } from '../types/films';
 import { UserData } from '../types/user';
-import {addComment, changeGenre, clearComments, clearFilmInfo, clearSimilar, loadComments, loadFilmInfo, loadFilms, loadSimilar, requireAuthorization, saveUser, setFilmDataLoading} from './action';
+import {changeGenre, clearComments, clearFilmInfo, clearSimilar, loadComments, loadFilmInfo, loadFilms, loadSimilar, saveUser, setFilmDataLoading, updatePromo} from './action';
 
 type initialStateType = {
-  genre: number;
+  activeGenre: string | null;
   films: FilmsType;
   filmInfo: FilmType | null;
   isFilmsDataLoading: boolean;
-  authorizationStatus: AuthorizationStatus;
   user: UserData | null;
   similar: FilmsType;
   comments: Comments;
+  promo: FilmType | null;
 }
 
 const initialState: initialStateType = {
-  genre: 0,
+  activeGenre: ALL_GENRES_CATEGORY_NAME,
   films: [],
   filmInfo: null,
   isFilmsDataLoading: false,
-  authorizationStatus: AuthorizationStatus.Unknown,
   user: null,
   similar: [],
   comments: [],
+  promo: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeGenre, (state, { payload }) => {
-      state.genre = payload;
+      state.activeGenre = payload;
     })
     .addCase(loadFilms, (state, { payload }) => {
       state.films = payload;
@@ -59,11 +59,8 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(clearComments, (state) => {
       state.comments = [];
     })
-    .addCase(addComment, (state, { payload }) => {
-      state.comments = [...state.comments, payload];
-    })
-    .addCase(requireAuthorization, (state, { payload }) => {
-      state.authorizationStatus = payload;
+    .addCase(updatePromo, (state, { payload }) => {
+      state.promo = payload;
     });
 });
 
