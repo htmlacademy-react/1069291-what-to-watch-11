@@ -5,12 +5,13 @@ import Footer from '../../components/footer/footer';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { fetchPromoAction } from '../../store/api-actions';
+import { getFilms, getPromo } from '../../store/films-process/selectors';
 
 function Main(): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const films = useAppSelector((state) => state.films);
-  const promo = useAppSelector((state) => state.promo);
+  const films = useAppSelector(getFilms);
+  const promo = useAppSelector(getPromo);
 
   useEffect(() => {
     dispatch(fetchPromoAction());

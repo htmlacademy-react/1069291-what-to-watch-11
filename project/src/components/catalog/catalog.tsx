@@ -4,6 +4,7 @@ import { ALL_GENRES_CATEGORY_NAME } from '../../consts';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { changeGenre } from '../../store/action';
+import { geActiveGenre } from '../../store/films-process/selectors';
 import { FilmType } from '../../types/films';
 import FilmList from '../film-list/film-list';
 import ShowMoreBtn from '../show-more-btn/show-more-btn';
@@ -17,7 +18,7 @@ type CatalogProps = {
 
 function Catalog({ className, title, films, withGenres }: CatalogProps): JSX.Element {
   const [maxCount, setMaxCount] = useState<number>(8);
-  const activeGenre = useAppSelector((state) => state.activeGenre);
+  const activeGenre = useAppSelector(geActiveGenre);
 
   const dispatch = useAppDispatch();
 

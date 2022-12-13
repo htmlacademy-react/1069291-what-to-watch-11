@@ -11,11 +11,13 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { clearFilmInfo, clearSimilar } from '../../store/action';
 import { fetchFilmInfoAction, fetchSimilarAction } from '../../store/api-actions';
+import { getFilmInfo, getSimilar } from '../../store/films-process/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 function Film(): JSX.Element {
-  const film = useAppSelector((state) => state.filmInfo);
-  const similar = useAppSelector((state) => state.similar);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const film = useAppSelector(getFilmInfo);
+  const similar = useAppSelector(getSimilar);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const { id } = useParams();
 
   const dispatch = useAppDispatch();

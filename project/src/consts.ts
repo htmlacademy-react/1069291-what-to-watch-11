@@ -24,8 +24,7 @@ export enum RatingStatus {
 
 
 export enum NameSpace {
-  Films = 'Films',
-  Comments = 'Comments',
+  Films = 'FILMS',
   User = 'USER',
 }
 
@@ -39,9 +38,11 @@ export const LOGIN_ERROR_TEXT = 'Не удалось авторизоватьс�
 export const LOGOUT_ERROR_TEXT = 'Не удалось выйти из системы';
 export const FETCH_FILMS_ERROR_TEXT = 'Не удалось получить список фильмов';
 export const FETCH_SIMILAR_ERROR_TEXT = 'Не удалось получить список похожих фильмов';
+export const FETCH_FAVORITE_ERROR_TEXT = 'Не удалось получить список сохраненных фильмов';
 export const FETCH_COMMENTS_ERROR_TEXT = 'Не удалось получить список комментариев';
 export const ADD_COMMENTS_ERROR_TEXT = 'Не удалось опубликовать комментарий';
 export const UPDATE_PROMO_ERROR_TEXT = 'Не удалось получить данные по промо-фильму';
+export const OPEN_FAVORITE_ERROR = 'Добавьте фильмы в список';
 
 export const Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -51,6 +52,7 @@ export enum APIRoute {
   Logout = '/logout',
   Comments = '/comments',
   Promo = '/promo',
+  Favorite = '/favorite',
 }
 
 export enum RedirectActions {
@@ -83,6 +85,8 @@ export enum FilmsActions {
   LOAD_FILM_INFO = 'LOAD_FILM_INFO',
   CLEAR_FILM_INFO = 'CLEAR_FILM_INFO',
   LOAD_SIMILAR = 'LOAD_SIMILAR',
+  LOAD_FAVORITE = 'LOAD_FAVORITE',
+  UPDATE_FAVORITE = 'UPDATE_FAVORITE',
   CLEAR_SIMILAR = 'CLEAR_SIMILAR',
   LOAD_COMMENTS = 'LOAD_COMMENTS',
   CLEAR_COMMENTS = 'CLEAR_COMMENTS',
