@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FilmType } from '../../types/films';
 import SmallFilmCard from '../small-film-card/small-film-card';
 
@@ -8,19 +9,11 @@ type FilmListProps = {
 
 
 function FilmList({ films }: FilmListProps): JSX.Element {
-  const [activeFilm, setActiveFilm] = useState<FilmType | null>(null);
-
-  const handleMouseEnter = (film: FilmType) => {
-    setActiveFilm(film);
-  };
-
-  const handleMouseLeave = () => {
-    setActiveFilm(null);
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="catalog__films-list">
-      {films.map((film) => <SmallFilmCard key={film.id} active={activeFilm?.id === film.id} film={film} handleMouseEnter={handleMouseEnter} handleMouseLeave={handleMouseLeave} />)}
+      {films.map((film) => <SmallFilmCard key={film.id} film={film} onClick={(id) => navigate(`/films/${id}`)} />)}
     </div>
   );
 }

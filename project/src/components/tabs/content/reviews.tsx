@@ -3,6 +3,7 @@ import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { clearComments } from '../../../store/action';
 import { fetchCommentsAction } from '../../../store/api-actions';
+import { getComments } from '../../../store/films-process/selectors';
 import { FilmType } from '../../../types/films';
 import Review from '../../review/review';
 
@@ -11,7 +12,7 @@ type ReviewsProps = {
 }
 
 function Reviews({ film }:ReviewsProps): JSX.Element {
-  const comments = useAppSelector((state) => state.comments);
+  const comments = useAppSelector(getComments);
 
   const leftColumnElements = comments.slice(0, Math.ceil((comments.length) / 2));
   const rightColumnElements = comments.slice(Math.ceil((comments.length) / 2), comments.length);
@@ -24,7 +25,7 @@ function Reviews({ film }:ReviewsProps): JSX.Element {
     return () => {
       dispatch(clearComments());
     };
-  }, [dispatch, film.id]);
+  }, [dispatch, film]);
 
   return (
     <div className="film-card__reviews film-card__row">

@@ -1,6 +1,11 @@
 import React, { ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../../../consts';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../../../consts';
+import { useAppDispatch } from '../../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../../hooks/useAppSelector';
+import { updateFavoriteFilmStatusAction } from '../../../../store/api-actions';
+import { getFavoriteLength } from '../../../../store/films-process/selectors';
+import { getAuthorizationStatus } from '../../../../store/user-process/selectors';
 import { FilmType } from '../../../../types/films';
 
 type FilmCardDescProps = {
@@ -8,16 +13,32 @@ type FilmCardDescProps = {
   children?: ReactNode;
 }
 
-
 function FilmCardDesc({ film, children }: FilmCardDescProps): JSX.Element {
+  const favoriteLength = useAppSelector(getFavoriteLength);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  const location = useLocation();
+  const dispatch = useAppDispatch();
+
+  const isFilmPage = location.pathname.includes('/films');
+
   const navigate = useNavigate();
 
   const handleClickOnPlayBtn = () => {
-    navigate(AppRoute.Player);
+    navigate(AppRoute.Player.replace(':id', String(film.id)));
   };
 
   const handleClickOnMyListBtn = () => {
-    navigate(AppRoute.MyList);
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.SignIn);
+      return;
+    }
+
+    if (!isFilmPage) {
+      navigate(AppRoute.MyList);
+    } else {
+      dispatch(updateFavoriteFilmStatusAction({ id: film.id, status: film.isFavorite ? 0 : 1 }));
+    }
   };
 
   return (
@@ -37,10 +58,10 @@ function FilmCardDesc({ film, children }: FilmCardDescProps): JSX.Element {
         </button>
         <button className="btn btn--list film-card__button" type="button" onClick={handleClickOnMyListBtn}>
           <svg viewBox="0 0 19 20" width="19" height="20">
-            <use xlinkHref="#add"></use>
+            {film.isFavorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
           </svg>
           <span>My list</span>
-          <span className="film-card__count">9</span>
+          {favoriteLength !== 0 && <span className="film-card__count">{favoriteLength}</span>}
         </button>
         { children }
       </div>

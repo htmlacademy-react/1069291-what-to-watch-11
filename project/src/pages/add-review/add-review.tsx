@@ -5,10 +5,12 @@ import { AppRoute, AuthorizationStatus } from '../../consts';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import Spinner from '../../components/spinner/spinner';
+import { getFilms } from '../../store/films-process/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 function AddReview(): JSX.Element {
-  const films = useAppSelector((state) => state.films);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const films = useAppSelector(getFilms);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const { id } = useParams();
 
