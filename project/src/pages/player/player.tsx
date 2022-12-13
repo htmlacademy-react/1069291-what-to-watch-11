@@ -40,6 +40,7 @@ function Player(): JSX.Element {
     setIsPlayed((value) => !value);
   };
 
+
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
