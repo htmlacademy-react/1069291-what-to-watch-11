@@ -4,7 +4,7 @@ import { AppRoute, AuthorizationStatus } from '../../../../consts';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { updateFavoriteFilmStatusAction } from '../../../../store/api-actions';
-import { getFavoriteLength } from '../../../../store/films-process/selectors';
+import { getFavorite } from '../../../../store/films-process/selectors';
 import { getAuthorizationStatus } from '../../../../store/user-process/selectors';
 import { FilmType } from '../../../../types/films';
 
@@ -14,12 +14,14 @@ type FilmCardDescProps = {
 }
 
 function FilmCardDesc({ film, children }: FilmCardDescProps): JSX.Element {
-  const favoriteLength = useAppSelector(getFavoriteLength);
+  const favorite = useAppSelector(getFavorite);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const location = useLocation();
   const dispatch = useAppDispatch();
 
+  const isFavorite = favorite.find(({ id }) => id === film.id);
+  const favoriteLength = favorite.length;
   const isFilmPage = location.pathname.includes('/films');
 
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ function FilmCardDesc({ film, children }: FilmCardDescProps): JSX.Element {
     if (!isFilmPage) {
       navigate(AppRoute.MyList);
     } else {
-      dispatch(updateFavoriteFilmStatusAction({ id: film.id, status: film.isFavorite ? 0 : 1 }));
+      dispatch(updateFavoriteFilmStatusAction({ id: film.id, status: isFavorite ? 0 : 1 }));
     }
   };
 
@@ -58,7 +60,7 @@ function FilmCardDesc({ film, children }: FilmCardDescProps): JSX.Element {
         </button>
         <button className="btn btn--list film-card__button" type="button" onClick={handleClickOnMyListBtn}>
           <svg viewBox="0 0 19 20" width="19" height="20">
-            {film.isFavorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
+            {isFavorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
           </svg>
           <span>My list</span>
           {favoriteLength !== 0 && <span className="film-card__count">{favoriteLength}</span>}
