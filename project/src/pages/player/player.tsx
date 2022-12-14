@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../consts';
 import { useAppSelector } from '../../hooks/useAppSelector';
@@ -19,16 +19,13 @@ function Player(): JSX.Element {
   const timeLeft = Number(currentFilm?.runTime) * 60 - currentTime;
   const currentTimePercent = Number(currentFilm && (currentTime * 100 / (currentFilm.runTime * 60)));
 
-  // eslint-disable-next-line no-console
-  console.log(currentTimePercent);
-
   const handleClickOnExit = () => {
     navigate(AppRoute.Main);
   };
 
-  const handleTimeUpdate = useCallback(() => {
+  const handleTimeUpdate = () => {
     videoRef.current && setCurrentTime(videoRef.current.currentTime);
-  }, []);
+  };
 
   const handleTogglePlay = () => {
     if (!isPlayed) {
@@ -50,19 +47,17 @@ function Player(): JSX.Element {
     return () => {
       video && video.removeEventListener('timeupdate', handleTimeUpdate);
     };
-  }, [handleTimeUpdate]);
-
-  if (!currentFilm) {return <div></div>;}
+  }, []);
 
   return (
     <div className="player">
       <video
         ref={videoRef}
-        src={currentFilm.videoLink}
+        src={currentFilm?.videoLink}
         className="player__video"
-        poster={currentFilm.backgroundImage}
+        poster={currentFilm?.backgroundImage}
       >
-        <img src={currentFilm.backgroundImage} alt={currentFilm.name} />
+        <img src={currentFilm?.backgroundImage} alt={currentFilm?.name} />
       </video>
 
       <button type="button" className="player__exit" onClick={handleClickOnExit}>Exit</button>
@@ -83,7 +78,7 @@ function Player(): JSX.Element {
             </svg>
             <span>{isPlayed ? 'Pause' : 'Play'}</span>
           </button>
-          <div className="player__name">{currentFilm.name}</div>
+          <div className="player__name">{currentFilm?.name}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">

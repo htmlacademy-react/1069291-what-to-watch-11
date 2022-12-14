@@ -32,7 +32,7 @@ function App(): JSX.Element {
   }, [authorizationStatus, dispatch]);
 
   if (isFilmsDataLoading) {
-    return <div className={s.spinner}><Spinner /></div>;
+    return <Spinner className={s.spinner} />;
   }
 
   return (
@@ -51,7 +51,6 @@ function App(): JSX.Element {
           <PrivateRoute>
             <AddReview />
           </PrivateRoute>
-
         }
         />
         <Route path={AppRoute.Player} element={<Player />} />
