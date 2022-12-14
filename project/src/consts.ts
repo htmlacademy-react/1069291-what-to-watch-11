@@ -43,6 +43,7 @@ export const FETCH_COMMENTS_ERROR_TEXT = 'Не удалось получить �
 export const ADD_COMMENTS_ERROR_TEXT = 'Не удалось опубликовать комментарий';
 export const UPDATE_PROMO_ERROR_TEXT = 'Не удалось получить данные по промо-фильму';
 export const OPEN_FAVORITE_ERROR = 'Добавьте фильмы в список';
+export const PASSWORD_VALIDATE_ERROR_TEXT = 'Пароль должен содержать минимум 1 букву и 1 цифру';
 
 export const Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
