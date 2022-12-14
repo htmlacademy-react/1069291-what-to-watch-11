@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../../../consts';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
@@ -17,12 +17,10 @@ function FilmCardDesc({ film, children }: FilmCardDescProps): JSX.Element {
   const favorite = useAppSelector(getFavorite);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
-  const location = useLocation();
   const dispatch = useAppDispatch();
 
   const isFavorite = favorite.find(({ id }) => id === film.id);
   const favoriteLength = favorite.length;
-  const isFilmPage = location.pathname.includes('/films');
 
   const navigate = useNavigate();
 
@@ -36,11 +34,8 @@ function FilmCardDesc({ film, children }: FilmCardDescProps): JSX.Element {
       return;
     }
 
-    if (!isFilmPage) {
-      navigate(AppRoute.MyList);
-    } else {
-      dispatch(updateFavoriteFilmStatusAction({ id: film.id, status: isFavorite ? 0 : 1 }));
-    }
+
+    dispatch(updateFavoriteFilmStatusAction({ id: film.id, status: isFavorite ? 0 : 1 }));
   };
 
   return (

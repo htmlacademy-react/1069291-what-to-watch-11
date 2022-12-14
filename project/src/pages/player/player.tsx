@@ -7,6 +7,7 @@ import toFormatPlayerTime from '../../toolkits/toFormatPlayerTime';
 
 function Player(): JSX.Element {
   const [isPlayed, setIsPlayed] = useState<boolean>(false);
+  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const films = useAppSelector(getFilms);
   const navigate = useNavigate();
@@ -60,27 +61,29 @@ function Player(): JSX.Element {
         <img src={currentFilm?.backgroundImage} alt={currentFilm?.name} />
       </video>
 
-      <button type="button" className="player__exit" onClick={handleClickOnExit}>Exit</button>
+      {!isFullScreen && <button type="button" className="player__exit" onClick={handleClickOnExit}>Exit</button>}
 
       <div className="player__controls">
+        {!isFullScreen &&
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value={currentTimePercent} max="100"></progress>
             <div className="player__toggler" style={{ left: `${currentTimePercent}%` }}>Toggler</div>
           </div>
           <div className="player__time-value">{toFormatPlayerTime(timeLeft)}</div>
-        </div>
+        </div>}
 
         <div className="player__controls-row">
+          {!isFullScreen &&
           <button type="button" className="player__play" onClick={handleTogglePlay}>
             <svg viewBox="0 0 19 19" width="19" height="19">
               {isPlayed ? <use xlinkHref="#pause"></use> : <use xlinkHref="#play-s"></use>}
             </svg>
             <span>{isPlayed ? 'Pause' : 'Play'}</span>
-          </button>
-          <div className="player__name">{currentFilm?.name}</div>
+          </button>}
+          {!isFullScreen && <div className="player__name">{currentFilm?.name}</div>}
 
-          <button type="button" className="player__full-screen">
+          <button type="button" className="player__full-screen" onClick={() => setIsFullScreen((value) => !value)}>
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
             </svg>

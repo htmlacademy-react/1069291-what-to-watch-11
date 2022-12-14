@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Catalog from '../../components/catalog/catalog';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import { AppRoute, OPEN_FAVORITE_ERROR } from '../../consts';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { fetchFavoriteAction } from '../../store/api-actions';
@@ -11,6 +14,14 @@ function MyList(): JSX.Element {
   const favorite = useAppSelector(getFavorite);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!favorite.length) {
+      toast.info(OPEN_FAVORITE_ERROR);
+      navigate(AppRoute.Main);
+    }
+  }, [favorite.length, navigate]);
 
   useEffect(() => {
     dispatch(fetchFavoriteAction());
